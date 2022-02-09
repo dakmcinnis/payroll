@@ -22,20 +22,27 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/pay_period">Pay Period</a>
+            <li class="nav-item">
+              <%= link_to pay_periods_path, :class => "nav-link#{' active' if current_route?(request, pay_periods_path)}" do %>
+                  Pay Period
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to intervals_path, :class => "nav-link#{' active' if current_route?(request, intervals_path)}" do %>
+                  Interval
+              <% end %>
             </li>
           </ul>
           <p class="navbar-text float-right">
-            <% if user_signed_in? %>
-              Logged in as <strong><%= current_user.email %></strong>.
-              <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-              <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-            <% else %>
-              <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-              <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-            <% end %>
-          </p>
+              <% if user_signed_in? %>
+                Logged in as <strong><%= current_user.email %></strong>.
+                <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+                <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+              <% else %>
+                <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+                <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+              <% end %>
+            </p>
         </div>
       </div>
     </nav>

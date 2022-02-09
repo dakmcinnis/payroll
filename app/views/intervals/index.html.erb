@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Intervals</h1>
+
+<div id="intervals">
+  <% @intervals.each do |interval| %>
+    <%= render interval %>
+    <p>
+      <%= link_to "Show this interval", interval %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New interval", new_interval_path %>

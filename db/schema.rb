@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_09_004117) do
+ActiveRecord::Schema.define(version: 2022_02_09_004626) do
+
+  create_table "intervals", force: :cascade do |t|
+    t.integer "user"
+    t.integer "pay_period"
+    t.date "date"
+    t.time "time_in"
+    t.time "time_out"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "pay_periods", force: :cascade do |t|
     t.date "start"
