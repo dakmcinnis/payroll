@@ -1,15 +1,22 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+_fixture:
+  ignore:
+    - base
+
+base: &base
   user: 1
   pay_period: 1
-  date: 2022-02-08
-  time_in: 2022-02-08 19:46:26
-  time_out: 2022-02-08 19:46:26
+  date: 2022-01-03
+
+one:
+  <<: *base
+  id: 1
+  time_in: 2000-01-01 08:46:00
+  time_out: 2000-01-01 12:04:00
 
 two:
-  user: 1
-  pay_period: 1
-  date: 2022-02-08
-  time_in: 2022-02-08 19:46:26
-  time_out: 2022-02-08 19:46:26
+  <<: *base
+  id: 2
+  time_in: 2000-01-01 01:37:00
+  time_out: 2000-01-01 06:46:00
