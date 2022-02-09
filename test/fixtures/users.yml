@@ -1,11 +1,36 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-default:
-  email: somename@someserver.com
-  encrypted_password: <%= User.new.send(:password_digest, '999222111') %>
-  created_at: <%= Time.zone.now - 7.days %>
-  updated_at: <%= Time.zone.now - 2.days %>
+_fixture:
+  ignore:
+    - base
+
+base: &base
+  encrypted_password: <%= User.new.send(:password_digest, ENV["SEED_PASSWORD"]) %>
+
+admin:
+  <<: *base
+  id: 1
+  admin: true
+  first_name: "Dakota"
+  last_name: "McInnis"
+  pronouns: "they/them"
+  email: <%= ENV["SEED_ADMIN_EMAIL"] %>
+
+employee1:
+  <<: *base
+  id: 2
+  admin: false
+  first_name: "Taamannae"
+  preferred_name: "Tammy"
+  last_name: "Tagasa"
+  pronouns: "she/her"
+  email: "tammy@gmail.com"
+
+employee2:
+  <<: *base
+  id: 3
+  admin: false
+  first_name: "Joseph"
+  last_name: "McKinney"
+  pronouns: "he/him"
+  email: "joseph@gmail.com"

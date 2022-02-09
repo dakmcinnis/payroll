@@ -137,8 +137,7 @@ class PayPeriodTest < ActiveSupport::TestCase
     pay_period = pay_periods(:active)
     new_end = @end
 
-    operation_status = PayPeriod.update(end: new_end)
-    assert operation_status
+    PayPeriod.update(end: new_end)
 
     updated_pay_period = PayPeriod.find(pay_period.id)
     assert_equal new_end, updated_pay_period.end
