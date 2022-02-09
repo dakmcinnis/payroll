@@ -28,11 +28,6 @@
                     Log Time
                 <% end %>
               </li>
-              <li class="nav-item">
-                <%= link_to intervals_path, :class => "nav-link#{' active' if current_route?(request, intervals_path)}" do %>
-                    My Timesheets
-                <% end %>
-              </li>
               <% if current_user.admin? %>
                 <li class="nav-item">
                   <%= link_to admin_index_path, :class => "nav-link#{' active' if current_route?(request, admin_index_path)}" do %>
