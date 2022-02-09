@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>The Payroll App</title>
+    <title><%= content_for?(:title) ? yield(:title) : "The Payroll App" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -62,7 +62,14 @@
       <% if alert %>
         <p class="alert alert-danger"><%= alert %></p>
       <% end %>
-      <%= yield %>
+      <br/>
+      <div>
+          <h1><%= yield(:title) if content_for?(:title) %></h1>
+          <h4><%= yield(:below_title) if content_for?(:below_title) %></h4>
+      </div>
+      <div>
+          <%= content_for?(:content) ? yield(:content) : yield %>
+      </div>
     </div>
   </body>
 </html>

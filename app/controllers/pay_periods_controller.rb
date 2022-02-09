@@ -3,7 +3,7 @@ class PayPeriodsController < ApplicationController
 
   # GET /pay_periods or /pay_periods.json
   def index
-    @pay_periods = PayPeriod.all
+    @pay_periods = PayPeriod.order(call: :desc)
   end
 
   # GET /pay_periods/1 or /pay_periods/1.json
