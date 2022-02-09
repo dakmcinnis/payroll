@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
-  resources :pay_periods
   resources :intervals
   devise_for :users
-  match '/users', to: 'users#index', via: 'get'
-  match '/users/:id', to: 'users#show', via: 'get'
-  resources :users, :only =>[:show]
+  authenticate :user, ->(user) { user.admin? } do
+    resources :admin, only: :index do
+      collection do
+        resources :users
+        resources :pay_periods
+      end
+    end
+  end
+  resources :pay_periods
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root to: redirect('/pay_periods')
+  root to: redirect('/intervals')
 end
