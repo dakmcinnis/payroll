@@ -1,8 +1,11 @@
 require "test_helper"
 
 class PayPeriodsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
   setup do
-    @pay_period = pay_periods(:one)
+    @pay_period = pay_periods(:active)
+
+    sign_in users(:employee1)
   end
 
   test "should get index" do

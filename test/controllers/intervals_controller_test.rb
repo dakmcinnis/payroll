@@ -1,8 +1,11 @@
 require "test_helper"
 
 class IntervalsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
   setup do
     @interval = intervals(:one)
+
+    sign_in users(:employee1)
   end
 
   test "should get index" do
