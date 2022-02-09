@@ -5,7 +5,7 @@ class PayPeriodsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @pay_period = pay_periods(:active)
 
-    sign_in users(:employee1)
+    sign_in users(:admin)
   end
 
   test "should get index" do

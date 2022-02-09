@@ -3,8 +3,8 @@ require "test_helper"
 class UsersControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
   setup do
-    @employee1 = users(:employee1)
-    sign_in @employee1
+    @user = users(:admin)
+    sign_in @user
   end
 
   test "should get index" do
@@ -13,7 +13,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get user" do
-    get users_url(@employee1.id)
+    get users_url(@user.id)
     assert_response :success
   end
 end
