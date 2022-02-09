@@ -134,7 +134,7 @@ class PayPeriodTest < ActiveSupport::TestCase
   # Update
 
   test "Successful update" do
-    pay_period = pay_periods(:active)
+    pay_period = pay_periods(:jan17active)
     new_end = @end
 
     PayPeriod.update(end: new_end)
@@ -144,7 +144,7 @@ class PayPeriodTest < ActiveSupport::TestCase
   end
 
   test "No update if no start" do
-    pay_period = pay_periods(:active)
+    pay_period = pay_periods(:jan17active)
     new_start = nil
     new_end = @end
 
@@ -156,7 +156,7 @@ class PayPeriodTest < ActiveSupport::TestCase
   end
 
   test "No update if no end" do
-    pay_period = pay_periods(:active)
+    pay_period = pay_periods(:jan17active)
     new_start = @start
     new_end = nil
 
@@ -168,7 +168,7 @@ class PayPeriodTest < ActiveSupport::TestCase
   end
 
   test "No update if no call" do
-    pay_period = pay_periods(:active)
+    pay_period = pay_periods(:jan17active)
     new_start = @start
     new_call = nil
 
@@ -182,7 +182,7 @@ class PayPeriodTest < ActiveSupport::TestCase
   # Destroy
 
   test "Destroy successfully" do
-    pay_period = pay_periods(:active)
+    pay_period = pay_periods(:jan17active)
 
     assert PayPeriod.exists?(pay_period.id)
 

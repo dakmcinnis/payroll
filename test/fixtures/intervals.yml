@@ -2,21 +2,36 @@
 
 _fixture:
   ignore:
-    - base
+    - basetimesheet
+    - basemorning
+    - baseafternoon
 
-base: &base
+basetimesheet: &basetimesheet
   user: 1
   pay_period: 1
-  date: 2022-01-03
 
-one:
-  <<: *base
-  id: 1
+basemorning: &basemorning
   time_in: 2000-01-01 08:46:00
   time_out: 2000-01-01 12:04:00
 
-two:
-  <<: *base
-  id: 2
+baseafternoon: &baseafternoon
   time_in: 2000-01-01 01:37:00
   time_out: 2000-01-01 06:46:00
+
+jan3morning:
+  id: 1
+  date: 2022-01-03
+  <<: *basetimesheet
+  <<: *basemorning
+
+jan3afternoon:
+  id: 2
+  date: 2022-01-03
+  <<: *basetimesheet
+  <<: *baseafternoon
+
+jan4morning:
+  id: 3
+  date: 2022-01-04
+  <<: *basetimesheet
+  <<: *basemorning

@@ -3,7 +3,7 @@ require "test_helper"
 class IntervalsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
   setup do
-    @interval = intervals(:one)
+    @interval = intervals(:jan3morning)
 
     sign_in users(:employee1)
   end

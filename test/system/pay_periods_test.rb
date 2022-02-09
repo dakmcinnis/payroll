@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class PayPeriodsTest < ApplicationSystemTestCase
   setup do
-    @pay_period = pay_periods(:one)
+    @pay_period = pay_periods(:jan3inactive)
   end
 
   test "visiting the index" do

@@ -174,7 +174,7 @@ class IntervalTest < ActiveSupport::TestCase
   # Update
 
   test "Successful update" do
-    interval = intervals(:one)
+    interval = intervals(:jan3morning)
     new_time_in = @eight_am
 
     interval.update(time_in: @eight_am)
@@ -184,7 +184,7 @@ class IntervalTest < ActiveSupport::TestCase
   end
 
   test "No update if no user" do
-    interval = intervals(:one)
+    interval = intervals(:jan3morning)
     new_user = nil
     new_pay_period = 2
 
@@ -196,7 +196,7 @@ class IntervalTest < ActiveSupport::TestCase
   end
 
   test "No update if no pay period" do
-    interval = intervals(:one)
+    interval = intervals(:jan3morning)
     new_user = 2
     new_pay_period = nil
 
@@ -208,7 +208,7 @@ class IntervalTest < ActiveSupport::TestCase
   end
 
   test "No update if no date" do
-    interval = intervals(:one)
+    interval = intervals(:jan3morning)
     new_date = nil
     new_time_in = @eight_am
     new_time_out = @twelve_pm
@@ -222,7 +222,7 @@ class IntervalTest < ActiveSupport::TestCase
   end
 
   test "No update if no time_in" do
-    interval = intervals(:one)
+    interval = intervals(:jan3morning)
     new_date = @date
     new_time_in = nil
     new_time_out = @twelve_pm
@@ -236,7 +236,7 @@ class IntervalTest < ActiveSupport::TestCase
   end
 
   test "No update if no time out" do
-    interval = intervals(:one)
+    interval = intervals(:jan3morning)
     new_date = @date
     new_time_in = @eight_am
     new_time_out = nil
@@ -250,7 +250,7 @@ class IntervalTest < ActiveSupport::TestCase
   end
 
   test "No update if time out before time in" do
-    interval = intervals(:one)
+    interval = intervals(:jan3morning)
     new_date = @date
     new_time_in = @twelve_pm
     new_time_out = @eight_am
@@ -264,7 +264,7 @@ class IntervalTest < ActiveSupport::TestCase
   end
 
   test "No update if time out is time in" do
-    interval = intervals(:one)
+    interval = intervals(:jan3morning)
     new_date = nil
     new_time_in = @eight_am
     new_time_out = @eight_am
@@ -280,7 +280,7 @@ class IntervalTest < ActiveSupport::TestCase
   # Destroy
 
   test "Destroy successfully" do
-    interval = intervals(:one)
+    interval = intervals(:jan3morning)
 
     assert Interval.exists?(interval.id)
 

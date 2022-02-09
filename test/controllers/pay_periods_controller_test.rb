@@ -3,7 +3,7 @@ require "test_helper"
 class PayPeriodsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
   setup do
-    @pay_period = pay_periods(:active)
+    @pay_period = pay_periods(:jan17active)
 
     sign_in users(:admin)
   end

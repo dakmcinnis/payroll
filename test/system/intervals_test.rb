@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class IntervalsTest < ApplicationSystemTestCase
   setup do
-    @interval = intervals(:one)
+    @interval = intervals(:jan3morning)
   end
 
   test "visiting the index" do
