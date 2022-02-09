@@ -24,4 +24,20 @@ class ApplicationHelperTest < ActionView::TestCase
 
     refute current_route?(controller.request, test_path)
   end
+
+  # For format_date
+
+  test "format_date for Dec 31st 1999" do
+    expected = "Fri. Dec. 31, '99"
+    actual = format_date(Date.new(1999, 12, 31))
+
+    assert_equal expected, actual
+  end
+
+  test "format_date for Feb 8th 2022" do
+    expected = "Tue. Feb. 8, '22"
+    actual = format_date(Date.new(2022, 2, 8))
+
+    assert_equal expected, actual
+  end
 end

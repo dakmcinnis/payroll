@@ -6,29 +6,29 @@ class IntervalsHelperTest < ActionView::TestCase
 
   test "format_time at midnight" do
     expected = "12:00 AM"
-    result = format_time(Time.new(2011, 10, 31))
+    actual = format_time(Time.new(2011, 10, 31))
 
-    assert_equal expected, result
+    assert_equal expected, actual
   end
 
   test "format_time at 3:45am" do
     expected = "3:45 AM"
-    result = format_time(Time.new(2011, 10, 31, 3, 45, 01))
+    actual = format_time(Time.new(2011, 10, 31, 3, 45, 01))
 
-    assert_equal expected, result
+    assert_equal expected, actual
   end
 
   test "format_time at noon" do
     expected = "12:00 PM"
-    result = format_time(Time.new(2011, 10, 31, 12))
+    actual = format_time(Time.new(2011, 10, 31, 12))
 
-    assert_equal expected, result
+    assert_equal expected, actual
   end
 
   test "format_time at 11:59:59pm" do
     expected = "11:59 PM"
-    result = format_time(Time.new(2011, 10, 31, 23, 59, 59))
+    actual = format_time(Time.new(2011, 10, 31, 23, 59, 59))
 
-    assert_equal expected, result
+    assert_equal expected, actual
   end
 end

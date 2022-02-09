@@ -4,4 +4,8 @@ module ApplicationHelper
     def current_route?(req, test_path)
         req.path.starts_with?(test_path)
     end
+
+    def format_date(date)
+        date.strftime("%a. %b. %-e, '%y")
+    end
 end
