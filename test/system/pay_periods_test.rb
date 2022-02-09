@@ -14,6 +14,7 @@ class PayPeriodsTest < ApplicationSystemTestCase
     visit pay_periods_url
     click_on "New pay period"
 
+    check "Active" if @pay_period.active
     fill_in "Call", with: @pay_period.call
     fill_in "End", with: @pay_period.end
     fill_in "Start", with: @pay_period.start
@@ -27,6 +28,7 @@ class PayPeriodsTest < ApplicationSystemTestCase
     visit pay_period_url(@pay_period)
     click_on "Edit this pay period", match: :first
 
+    check "Active" if @pay_period.active
     fill_in "Call", with: @pay_period.call
     fill_in "End", with: @pay_period.end
     fill_in "Start", with: @pay_period.start

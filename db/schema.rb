@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_09_004626) do
+ActiveRecord::Schema.define(version: 2022_02_09_013952) do
 
   create_table "intervals", force: :cascade do |t|
     t.integer "user"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_004626) do
   end
 
   create_table "pay_periods", force: :cascade do |t|
+    t.boolean "active"
     t.date "start"
     t.date "end"
     t.date "call"

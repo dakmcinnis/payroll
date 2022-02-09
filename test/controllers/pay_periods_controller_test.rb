@@ -17,7 +17,7 @@ class PayPeriodsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create pay_period" do
     assert_difference("PayPeriod.count") do
-      post pay_periods_url, params: { pay_period: { call: @pay_period.call, end: @pay_period.end, start: @pay_period.start } }
+      post pay_periods_url, params: { pay_period: { active: @pay_period.active, call: @pay_period.call, end: @pay_period.end, start: @pay_period.start } }
     end
 
     assert_redirected_to pay_period_url(PayPeriod.last)
@@ -34,7 +34,7 @@ class PayPeriodsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update pay_period" do
-    patch pay_period_url(@pay_period), params: { pay_period: { call: @pay_period.call, end: @pay_period.end, start: @pay_period.start } }
+    patch pay_period_url(@pay_period), params: { pay_period: { active: @pay_period.active, call: @pay_period.call, end: @pay_period.end, start: @pay_period.start } }
     assert_redirected_to pay_period_url(@pay_period)
   end
 

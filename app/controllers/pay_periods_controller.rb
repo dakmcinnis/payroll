@@ -65,6 +65,6 @@ class PayPeriodsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pay_period_params
-      params.require(:pay_period).permit(:start, :end, :call)
+      params.require(:pay_period).permit(:active, :start, :end, :call)
     end
 end
