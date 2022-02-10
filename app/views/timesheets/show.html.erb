@@ -1,10 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
+<%= link_to "< Back to timesheets", timesheets_path %>
+
+<br/>
+<br/>
+
 <%= render @timesheet %>
 
 <div>
-  <%= link_to "Edit this timesheet", edit_timesheet_path(@timesheet) %> |
-  <%= link_to "Back to timesheets", timesheets_path %>
-
+  <%= link_to "Edit this timesheet", edit_timesheet_path(@timesheet) if @editable %>
   <%= button_to "Destroy this timesheet", @timesheet, method: :delete %>
 </div>

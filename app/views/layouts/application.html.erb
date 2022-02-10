@@ -24,8 +24,13 @@
           <ul class="navbar-nav mr-auto">
             <% if user_signed_in? %>
               <li class="nav-item">
-                <%= link_to intervals_path, :class => "nav-link#{' active' if current_route?(request, intervals_path)}" do %>
+                <%= link_to latest_timesheet_path, :class => "nav-link#{' active' if current_route?(request, latest_timesheet_path)}" do %>
                     Log Time
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to timesheets_path, :class => "nav-link#{' active' if current_route?(request, timesheets_path)}" do %>
+                    My Timesheets
                 <% end %>
               </li>
               <% if current_user.admin? %>

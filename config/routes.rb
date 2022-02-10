@@ -1,12 +1,25 @@
 Rails.application.routes.draw do
   resources :timesheets
   resources :intervals
+
+  get '/latest_timesheet', to: 'timesheets#show_latest'
+  # get '/timesheets/latest', to: 'timesheets#show_latest'
+  # get '/timesheets/latest/edit', to 'timesheets#edit_latest'
+  resources :pay_periods do
+    resources :timesheets do
+      resources :intervals
+    end
+  end
   devise_for :users
   authenticate :user, ->(user) { user.admin? } do
     resources :admin, only: :index do
       collection do
         resources :users
-        resources :pay_periods
+        resources :pay_periods do
+          resources :timesheets do
+            resources :intervals
+          end
+        end
       end
     end
   end

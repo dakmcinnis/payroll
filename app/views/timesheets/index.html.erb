@@ -2,13 +2,16 @@
 
 <h1>Timesheets</h1>
 
+<%= link_to "+ New timesheet", new_timesheet_path %>
+
+<br/>
+<br/>
+
 <div id="timesheets">
   <% @timesheets.each do |timesheet| %>
-    <%= render timesheet %>
+    <%= render "preview", timesheet: timesheet %>
     <p>
       <%= link_to "Show this timesheet", timesheet %>
     </p>
   <% end %>
 </div>
-
-<%= link_to "New timesheet", new_timesheet_path %>
