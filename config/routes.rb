@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :timesheets
   resources :intervals
   devise_for :users
   authenticate :user, ->(user) { user.admin? } do

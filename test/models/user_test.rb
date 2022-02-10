@@ -241,4 +241,6 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "Tammy", user.display_first_name
     assert_equal "Tammy Tagasa", user.display_full_name
   end
+
+  # TODO: Add timesheet tests
 end

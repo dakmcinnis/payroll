@@ -3,6 +3,7 @@ class PayPeriod < ApplicationRecord
     validates :end, presence: true
     validates :call, presence: true
     after_initialize :default_values
+    has_many :timesheets
 
     private
 

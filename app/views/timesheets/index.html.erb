@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Timesheets</h1>
+
+<div id="timesheets">
+  <% @timesheets.each do |timesheet| %>
+    <%= render timesheet %>
+    <p>
+      <%= link_to "Show this timesheet", timesheet %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New timesheet", new_timesheet_path %>

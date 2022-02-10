@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+  has_many :timesheets
 
   def display_first_name
     return self.preferred_name if self.preferred_name
