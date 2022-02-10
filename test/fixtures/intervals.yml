@@ -1,37 +1,37 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# # TODO: Create fixtures. Ran into this issue: https://stackoverflow.com/questions/30729723/ruby-on-rails-deleting-fixtures-with-foreign-keys
 
-_fixture:
-  ignore:
-    - basetimesheet
-    - basemorning
-    - baseafternoon
+# _fixture:
+#   ignore:
+#     - basetimesheet
+#     - basemorning
+#     - baseafternoon
 
-basetimesheet: &basetimesheet
-  user: 1
-  pay_period: 1
+# basetimesheet: &basetimesheet
+#   user: 1
+#   pay_period: 1
 
-basemorning: &basemorning
-  time_in: 2000-01-01 08:46:00
-  time_out: 2000-01-01 12:04:00
+# basemorning: &basemorning
+#   time_in: 2000-01-01 08:46:00
+#   time_out: 2000-01-01 12:04:00
 
-baseafternoon: &baseafternoon
-  time_in: 2000-01-01 01:37:00
-  time_out: 2000-01-01 06:46:00
+# baseafternoon: &baseafternoon
+#   time_in: 2000-01-01 01:37:00
+#   time_out: 2000-01-01 06:46:00
 
-jan3morning:
-  id: 1
-  date: 2022-01-03
-  <<: *basetimesheet
-  <<: *basemorning
+# jan3morning:
+#   id: 1
+#   date: 2022-01-03
+#   <<: *basetimesheet
+#   <<: *basemorning
 
-jan3afternoon:
-  id: 2
-  date: 2022-01-03
-  <<: *basetimesheet
-  <<: *baseafternoon
+# jan3afternoon:
+#   id: 2
+#   date: 2022-01-03
+#   <<: *basetimesheet
+#   <<: *baseafternoon
 
-jan4morning:
-  id: 3
-  date: 2022-01-04
-  <<: *basetimesheet
-  <<: *basemorning
+# jan4morning:
+#   id: 3
+#   date: 2022-01-04
+#   <<: *basetimesheet
+#   <<: *basemorning

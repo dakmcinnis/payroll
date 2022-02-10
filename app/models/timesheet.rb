@@ -11,5 +11,6 @@ end
 class Timesheet < ApplicationRecord
   belongs_to :user
   belongs_to :pay_period
+  has_many :intervals
   validates_with UniqueValidator
 end

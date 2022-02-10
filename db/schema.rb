@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_09_223442) do
+ActiveRecord::Schema.define(version: 2022_02_10_210727) do
 
   create_table "intervals", force: :cascade do |t|
-    t.integer "user"
-    t.integer "pay_period"
     t.date "date"
     t.time "time_in"
     t.time "time_out"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "timesheet_id", null: false
+    t.index ["timesheet_id"], name: "index_intervals_on_timesheet_id"
   end
 
   create_table "pay_periods", force: :cascade do |t|
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_223442) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "intervals", "timesheets"
   add_foreign_key "timesheets", "pay_periods"
   add_foreign_key "timesheets", "users"
 end

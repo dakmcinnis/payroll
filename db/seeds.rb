@@ -57,25 +57,24 @@ PayPeriod.create(
 
 # Time Intervals
 
-users = User.all
-pay_periods = PayPeriod.all
-
-users.each do |user|
-    pay_periods.each do |pay_period|
+User.all.each do |user|
+    PayPeriod.all.each do |pay_period|
+        timesheet = Timesheet.create(
+            user_id: user.id,
+            pay_period_id: pay_period.id
+        )
         i = 0
         for i in (0..13)
             date = pay_period.start + i.days
             next if date.saturday? || date.sunday?
             Interval.create(
-                user: user.id,
-                pay_period: pay_period.id,
+                timesheet_id: timesheet.id,
                 date: date,
                 time_in: date + 8.hours,
                 time_out: date + 12.hours
             )
             Interval.create(
-                user: user.id,
-                pay_period: pay_period.id,
+                timesheet_id: timesheet.id,
                 date: date,
                 time_in: date + 13.hours,
                 time_out: date + 17.hours

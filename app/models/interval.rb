@@ -8,16 +8,13 @@ class TimeValidator < ActiveModel::Validator
 end
 
 class Interval < ApplicationRecord
-    validates :user, presence: true
-    validates :pay_period, presence: true
+    belongs_to :timesheet
     validates :date, presence: true
     validates :time_in, presence: true
     validates :time_out, presence: true
     validates_with TimeValidator
 
     # TODO: Consider adding other validations
-    # - User exists
-    # - Pay period exists
     # - Pay period active (not recommended, because they make mistakes sometimes)
     # - Date within pay period
 end
