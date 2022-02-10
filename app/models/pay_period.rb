@@ -5,6 +5,14 @@ class PayPeriod < ApplicationRecord
     after_initialize :default_values
     has_many :timesheets
 
+    def display_name
+        "##{self.id}: #{display_dates}"
+    end
+
+    def display_dates
+        "#{ApplicationController.helpers.format_date(self.start)} - #{ApplicationController.helpers.format_date(self.end)}"
+    end
+
     private
 
     def default_values

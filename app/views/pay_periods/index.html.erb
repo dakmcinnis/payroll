@@ -1,3 +1,7 @@
+<% content_for :below_title do %>
+    View all the pay periods and timesheets
+<% end %>
+
 <p style="color: green"><%= notice %></p>
 
 <%= link_to "Create pay period", new_pay_period_path %>
@@ -8,7 +12,7 @@
 <div id="pay_periods">
   <% @pay_periods.each do |pay_period| %>
     <p>
-      <%= link_to "##{pay_period.id}: #{format_date(pay_period.start)} - #{format_date(pay_period.end)}", pay_period %>
+      <%= link_to pay_period.display_name, pay_period %>
     </p>
   <% end %>
 </div>
