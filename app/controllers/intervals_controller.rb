@@ -1,11 +1,10 @@
 class IntervalsController < ApplicationController
+  before_action :set_timesheet
   before_action :set_interval, only: %i[ show edit update destroy ]
-  before_action :set_timesheet, only: %i[ index new ]
 
   # GET /intervals or /intervals.json
   def index
-    @intervals = Interval.all if @timesheet.nil?
-    @intervals = Interval.where(timesheet: @timesheet)
+    @intervals = @timesheet.intervals.order(date: :desc, time_in: :desc)
   end
 
   # GET /intervals/1 or /intervals/1.json
@@ -14,8 +13,7 @@ class IntervalsController < ApplicationController
 
   # GET /intervals/new
   def new
-    @interval = Interval.new
-    @interval.timesheet_id = @timesheet.id
+    @interval = @timesheet.intervals.build
   end
 
   # GET /intervals/1/edit
@@ -24,11 +22,11 @@ class IntervalsController < ApplicationController
 
   # POST /intervals or /intervals.json
   def create
-    @interval = Interval.new(interval_params)
+    @interval = @timesheet.intervals.build(interval_params)
 
     respond_to do |format|
       if @interval.save
-        format.html { redirect_to interval_url(@interval), notice: "Interval was successfully created." }
+        format.html { redirect_to timesheet_intervals_path(@timesheet), notice: "Interval was successfully created." }
         format.json { render :show, status: :created, location: @interval }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +39,7 @@ class IntervalsController < ApplicationController
   def update
     respond_to do |format|
       if @interval.update(interval_params)
-        format.html { redirect_to interval_url(@interval), notice: "Interval was successfully updated." }
+        format.html { redirect_to timesheet_intervals_path(@timesheet), notice: "Interval was successfully updated." }
         format.json { render :show, status: :ok, location: @interval }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,7 +53,7 @@ class IntervalsController < ApplicationController
     @interval.destroy
 
     respond_to do |format|
-      format.html { redirect_to intervals_url, notice: "Interval was successfully destroyed." }
+      format.html { redirect_to timesheet_intervals_path(@timesheet), notice: "Interval was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -67,11 +65,11 @@ class IntervalsController < ApplicationController
     end
 
     def set_interval
-      @interval = Interval.find(params[:id])
+      @interval = @timesheet.intervals.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def interval_params
-      params.require(:interval, :timesheet).permit(:date, :time_in, :time_out)
+      params.require(:interval).permit(:timesheet_id, :date, :time_in, :time_out)
     end
 end

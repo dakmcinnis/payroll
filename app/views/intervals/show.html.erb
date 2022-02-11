@@ -1,14 +1,16 @@
+<br/>
+
 <p style="color: green"><%= notice %></p>
 
-<%= link_to "< Back to intervals", timesheet_intervals_path(timesheet: @timesheet) %>
+<%= link_to "< Back to timesheet breakdown", timesheet_intervals_url(timesheet_id: @timesheet.id) %>
 
 <br/>
 <br/>
+
+<h1>Viewing interval</h1>
 
 <%= render @interval %>
 
-<div>
-  <%= link_to "Edit this interval", edit_timesheet_interval_path(timesheet: @timesheet) %>
+<%= link_to "Edit this interval", edit_timesheet_interval_path(timesheet: @timesheet) %>
 
-  <%= button_to "Destroy this interval", @interval, method: :delete %>
-</div>
+<%= button_to 'Destroy interval', [@timesheet, @interval], method: :delete %>

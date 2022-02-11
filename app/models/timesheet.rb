@@ -11,7 +11,7 @@ end
 class Timesheet < ApplicationRecord
   belongs_to :user
   belongs_to :pay_period
-  has_many :intervals
+  has_many :intervals, dependent: :destroy
   validates_with UniqueValidator
 
   def total_duration

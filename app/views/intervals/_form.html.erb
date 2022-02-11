@@ -1,4 +1,4 @@
-<%= form_with(model: interval) do |form| %>
+<%= form_with(model: [@timesheet, interval]) do |form| %>
   <% if interval.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(interval.errors.count, "error") %> prohibited this interval from being saved:</h2>
@@ -11,25 +11,28 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :timesheet_id, style: "display: block" %>
-    <%= form.number_field :timesheet_id %>
-  </div>
+  <br/>
 
   <div>
     <%= form.label :date, style: "display: block" %>
     <%= form.date_field :date %>
   </div>
 
+  <br/>
+
   <div>
     <%= form.label :time_in, style: "display: block" %>
     <%= form.time_field :time_in %>
   </div>
 
+  <br/>
+
   <div>
     <%= form.label :time_out, style: "display: block" %>
     <%= form.time_field :time_out %>
   </div>
+
+  <br/>
 
   <div>
     <%= form.submit %>
