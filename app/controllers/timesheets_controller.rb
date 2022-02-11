@@ -77,7 +77,7 @@ class TimesheetsController < ApplicationController
     end
 
     def get_latest_timesheet_for_user
-      @timesheet = Timesheet.where(user: current_user).order(created_at: :desc).first
+      Timesheet.where(user: current_user).order(created_at: :desc).first
     end
 
     def set_timesheet_to_latest_for_user
