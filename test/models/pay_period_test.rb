@@ -131,16 +131,73 @@ class PayPeriodTest < ActiveSupport::TestCase
     end
   end
 
+  test "No creation or save if end before start" do
+    pay_period = nil
+
+    assert_no_difference "PayPeriod.count" do
+      pay_period = PayPeriod.create(
+        start: @end, end: @start, call: @call
+      )
+    end
+
+    assert_no_difference "PayPeriod.count" do
+      pay_period.save
+    end
+  end
+
+  test "No creation or save if end is start" do
+    pay_period = nil
+
+    assert_no_difference "PayPeriod.count" do
+      pay_period = PayPeriod.create(
+        start: @start, end: @start, call: @call
+      )
+    end
+
+    assert_no_difference "PayPeriod.count" do
+      pay_period.save
+    end
+  end
+
+  test "No creation or save if call before end" do
+    pay_period = nil
+
+    assert_no_difference "PayPeriod.count" do
+      pay_period = PayPeriod.create(
+        start: @start, end: @call, call: @end
+      )
+    end
+
+    assert_no_difference "PayPeriod.count" do
+      pay_period.save
+    end
+  end
+
+  test "Creation if call is end" do
+    pay_period = nil
+
+    assert_difference "PayPeriod.count", 1 do
+      pay_period = PayPeriod.create(
+        start: @start, end: @end, call: @end
+      )
+    end
+
+    assert pay_period
+    assert_equal @start, pay_period.start
+    assert_equal @end, pay_period.end
+    assert_equal @end, pay_period.call
+  end
+
   # Update
 
   test "Successful update" do
     pay_period = pay_periods(:jan17active)
-    new_end = @end
+    new_call = @call
 
-    PayPeriod.update(end: new_end)
+    PayPeriod.update(call: new_call)
 
     updated_pay_period = PayPeriod.find(pay_period.id)
-    assert_equal new_end, updated_pay_period.end
+    assert_equal new_call, updated_pay_period.call
   end
 
   test "No update if no start" do
@@ -177,6 +234,62 @@ class PayPeriodTest < ActiveSupport::TestCase
     updated_pay_period = PayPeriod.find(pay_period.id)
     assert_not_equal new_start, updated_pay_period.start
     assert_not_equal new_call, updated_pay_period.call
+  end
+
+  test "No update if end before start" do
+    pay_period = pay_periods(:jan17active)
+    new_start = @end
+    new_end = @start
+    new_call = @call
+
+    PayPeriod.update(start: new_start, end: new_end, call: new_call)
+
+    updated_pay_period = PayPeriod.find(pay_period.id)
+    assert_not_equal new_start, updated_pay_period.start
+    assert_not_equal new_end, updated_pay_period.end
+    assert_not_equal new_call, updated_pay_period.call
+  end
+
+  test "No update if end is start" do
+    pay_period = pay_periods(:jan17active)
+    new_start = @end
+    new_end = @end
+    new_call = @call
+
+    PayPeriod.update(start: new_start, end: new_end, call: new_call)
+
+    updated_pay_period = PayPeriod.find(pay_period.id)
+    assert_not_equal new_start, updated_pay_period.start
+    assert_not_equal new_end, updated_pay_period.end
+    assert_not_equal new_call, updated_pay_period.call
+  end
+
+  test "No update if call before end" do
+    pay_period = pay_periods(:jan17active)
+    new_start = @start
+    new_end = @call
+    new_call = @end
+
+    PayPeriod.update(start: new_start, end: new_end, call: new_call)
+
+    updated_pay_period = PayPeriod.find(pay_period.id)
+    assert_not_equal new_start, updated_pay_period.start
+    assert_not_equal new_end, updated_pay_period.end
+    assert_not_equal new_call, updated_pay_period.call
+  end
+
+  test "Update when call is end" do
+    pay_period = pay_periods(:jan17active)
+    new_start = @start
+    new_end = @end
+    new_call = @end
+
+    PayPeriod.update(start: new_start, end: new_end, call: new_call)
+
+    updated_pay_period = PayPeriod.find(pay_period.id)
+    assert_equal new_start, updated_pay_period.start
+    assert_equal new_end, updated_pay_period.end
+    assert_equal new_call, updated_pay_period.call
   end
 
   # Destroy
