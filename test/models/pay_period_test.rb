@@ -306,6 +306,8 @@ class PayPeriodTest < ActiveSupport::TestCase
     refute PayPeriod.exists?(pay_period.id)
   end
 
+  # TODO: Add timesheet dependent destroy test
+
   # Other
 
   test "Correct display name" do
@@ -320,5 +322,5 @@ class PayPeriodTest < ActiveSupport::TestCase
     assert_equal "Mon. Jan. 17, '22 - Sun. Jan. 30, '22", pay_period.display_dates
   end
 
-  # TODO: Add timesheet tests
+  # TODO: Add other timesheet tests
 end

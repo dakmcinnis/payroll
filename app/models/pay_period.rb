@@ -16,7 +16,7 @@ class PayPeriod < ApplicationRecord
     validates :call, presence: true
     validates_with TimeValidator
     after_initialize :default_values
-    has_many :timesheets
+    has_many :timesheets, dependent: :destroy
 
     def display_name
         "##{self.id}: #{display_dates}"
