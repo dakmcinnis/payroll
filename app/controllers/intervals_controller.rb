@@ -1,7 +1,7 @@
 class IntervalsController < ApplicationController
   before_action :set_timesheet
   before_action :set_editable_from_timesheet
-  before_action :set_interval, only: %i[ show edit update destroy ]
+  before_action :set_interval_from_timesheet, only: %i[ show edit update destroy ]
 
   # GET /intervals or /intervals.json
   def index
@@ -15,6 +15,9 @@ class IntervalsController < ApplicationController
   # GET /intervals/new
   def new
     @interval = @timesheet.intervals.build
+    @interval.date = Time.now.to_date
+    @interval.time_in = @interval.date + 8.hours
+    @interval.time_out = @interval.date + 12.hours
   end
 
   # GET /intervals/1/edit
@@ -65,7 +68,7 @@ class IntervalsController < ApplicationController
       @timesheet = Timesheet.find(params[:timesheet_id])
     end
 
-    def set_interval
+    def set_interval_from_timesheet
       @interval = @timesheet.intervals.find(params[:id])
     end
 
