@@ -1,20 +1,14 @@
-<div id="<%= dom_id interval %>" style="display: flex; justify-content: space-between;">
-  <p>
-    <strong>Date:</strong>
-    <%= format_date(interval.date) %>
-  </p>
+<p>
+  <strong>Date:</strong>
+  <%= format_date(interval.date) %>
+</p>
 
-  <p>
-    <strong>Time:</strong>
-    <%= format_time(interval.time_in) %> - <%= format_time(interval.time_out) %>
-  </p>
+<p>
+  <strong>Time:</strong>
+  <%= format_time(interval.time_in) %> - <%= format_time(interval.time_out) %>
+</p>
 
-  <p>
-    <strong>Duration:</strong>
-    <%= format_duration(interval.duration) %>
-  </p>
-
-  <p>
-    <%= link_to "Show this interval", timesheet_interval_path(timesheet_id: @timesheet.id, id: interval.id) %>
-  </p>
-</div>
+<p>
+  <strong>Duration:</strong>
+  <%= format_duration(interval.duration) %>
+</p>

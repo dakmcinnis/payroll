@@ -1,22 +1,38 @@
 <p style="color: green"><%= notice %></p>
 
-<%= link_to "< Back to timesheets", timesheets_path(timesheet: @timesheet) %>
+<%= link_to "< Back to overview", @timesheet %>
 
 <br/>
 <br/>
 
 <h1>Timesheet Breakdown</h1>
-<h4><%= @timesheet.pay_period.display_dates %></h4>
-<h4><%= @timesheet.user.display_full_name %></h4>
+<div style="display: flex; justify-content: space-between;">
+  <div>
+    <h5><%= @timesheet.pay_period.display_dates %></h5>
+    <h5><%= @timesheet.user.display_full_name %></h5>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: flex-end;">
+    <p><strong>Duration: </strong><%= format_duration(@timesheet.total_duration) %></p>
+    <%= link_to "+ New interval", new_timesheet_interval_path(timesheet_id: @timesheet.id) %>
+  </div>
+</div>
 
-<%= link_to "+ New interval", new_timesheet_interval_path(timesheet_id: @timesheet.id) %>
+  
+<div style="display: flex; flex-direction: row-reverse;">
+
+</div>
 
 <br/>
 <br/>
 
 <div id="intervals">
   <% @intervals.each do |interval| %>
-    <%= render interval %>
+    <div id="<%= dom_id interval %>" style="display: flex; justify-content: space-between;">
+      <%= render interval %>
+      <p>
+        <%= link_to "View", timesheet_interval_path(timesheet: @timesheet, id: interval.id) %>
+      </p>
+    </div>
   <% end %>
 </div>
 
