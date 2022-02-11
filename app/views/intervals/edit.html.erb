@@ -1,10 +1,10 @@
 <h1>Editing interval</h1>
 
-<%= render "form", interval: @interval %>
+<%= render "form", interval: @interval, timesheet: @timesheet %>
 
 <br>
 
 <div>
-  <%= link_to "Show this interval", @interval %> |
-  <%= link_to "Back to intervals", intervals_path %>
+  <%= link_to "Show this interval", timesheet_interval_path(timesheet: @timesheet) %> |
+  <%= link_to "Back to intervals", timesheet_intervals_path(timesheet: @timesheet) %>
 </div>

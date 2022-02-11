@@ -1,9 +1,11 @@
 class IntervalsController < ApplicationController
   before_action :set_interval, only: %i[ show edit update destroy ]
+  before_action :set_timesheet, only: %i[ index new ]
 
   # GET /intervals or /intervals.json
   def index
-    @intervals = Interval.all
+    @intervals = Interval.all if @timesheet.nil?
+    @intervals = Interval.where(timesheet: @timesheet)
   end
 
   # GET /intervals/1 or /intervals/1.json
@@ -13,6 +15,7 @@ class IntervalsController < ApplicationController
   # GET /intervals/new
   def new
     @interval = Interval.new
+    @interval.timesheet_id = @timesheet.id
   end
 
   # GET /intervals/1/edit
@@ -59,12 +62,16 @@ class IntervalsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_timesheet
+      @timesheet = Timesheet.find(params[:timesheet_id])
+    end
+
     def set_interval
       @interval = Interval.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def interval_params
-      params.require(:interval).permit(:user, :pay_period, :date, :time_in, :time_out)
+      params.require(:interval, :timesheet).permit(:date, :time_in, :time_out)
     end
 end

@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  resources :timesheets
-  resources :intervals
-
   get '/latest_timesheet', to: 'timesheets#show_latest'
-  # get '/timesheets/latest', to: 'timesheets#show_latest'
-  # get '/timesheets/latest/edit', to 'timesheets#edit_latest'
+  resources :timesheets do
+    resources :intervals
+  end
+  resources :intervals
   resources :pay_periods do
     resources :timesheets do
       resources :intervals

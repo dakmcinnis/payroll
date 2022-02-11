@@ -7,7 +7,7 @@ class TimesheetsController < ApplicationController
 
   # GET /timesheets or /timesheets.json
   def index
-    @timesheets = Timesheet.where(user: current_user)
+    @timesheets = Timesheet.where(user: current_user).order(created_at: :desc)
   end
 
   # GET /timesheets/1 or /timesheets/1.json
@@ -90,7 +90,7 @@ class TimesheetsController < ApplicationController
     end
 
     def set_editable_from_timesheet
-      @editable = @timesheet.id == get_latest_timesheet_for_user
+      @editable = @timesheet.id == get_latest_timesheet_for_user.id
     end
 
     def set_user_from_timesheet

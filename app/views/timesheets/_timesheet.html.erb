@@ -1,3 +1,8 @@
 <div id="<%= dom_id timesheet %>">
   <%= render "preview", timesheet: timesheet %>
+
+  <p>
+    <strong>Total Time:</strong>
+    <%= format_duration(timesheet.total_duration) %>
+  </p>
 </div>

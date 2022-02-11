@@ -40,4 +40,52 @@ class ApplicationHelperTest < ActionView::TestCase
 
     assert_equal expected, actual
   end
+
+  # For get_hours_from_duration
+
+  test "Get 4h from 4h 1min duration" do
+    expected = 4
+
+    date = Date.new(2022, 2, 8)
+    duration = (date + 8.hours + 1.minute) - (date + 4.hours)
+    actual = get_hours_from_duration(duration)
+
+    assert_equal expected, actual
+  end
+
+  # For get_minutes_from_duration
+
+  test "Get 241 min from 4h 1min duration" do
+    expected = 241
+
+    date = Date.new(2022, 2, 8)
+    duration = (date + 8.hours + 1.minute) - (date + 4.hours)
+    actual = get_minutes_from_duration(duration)
+
+    assert_equal expected, actual
+  end
+
+    # For get_remaining_minutes_from_duration
+
+    test "Get remaining 1m from 4h 1min duration" do
+      expected = 1
+  
+      date = Date.new(2022, 2, 8)
+      duration = (date + 8.hours + 1.minute) - (date + 4.hours)
+      actual = get_remaining_minutes_from_duration(duration)
+  
+      assert_equal expected, actual
+    end
+
+    # For format_duration
+
+    test "Get duration formatted as 4h 1m" do
+      expected = "4h 1m"
+  
+      date = Date.new(2022, 2, 8)
+      duration = (date + 8.hours + 1.minute) - (date + 4.hours)
+      actual = format_duration(duration)
+  
+      assert_equal expected, actual
+    end
 end

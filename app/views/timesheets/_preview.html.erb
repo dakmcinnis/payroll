@@ -1,11 +1,17 @@
 <div id="<%= dom_id timesheet %>">
+  <% pay_period = PayPeriod.find(timesheet.pay_period_id) %>
   <p>
     <strong>User:</strong>
     <%= User.find(timesheet.user_id).display_full_name %>
   </p>
 
   <p>
-    <strong>Pay period:</strong>
-    <%= PayPeriod.find(timesheet.pay_period_id).display_dates %>
+    <strong>Pay Period:</strong>
+    #<%= pay_period.id %>
+  </p>
+
+  <p>
+    <strong>Dates:</strong>
+    <%= pay_period.display_dates %>
   </p>
 </div>

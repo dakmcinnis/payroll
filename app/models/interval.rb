@@ -17,4 +17,8 @@ class Interval < ApplicationRecord
     # TODO: Consider adding other validations
     # - Pay period active (not recommended, because they make mistakes sometimes)
     # - Date within pay period
+
+    def duration
+        self.time_out - time_in
+    end
 end

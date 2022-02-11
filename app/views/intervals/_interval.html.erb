@@ -1,22 +1,17 @@
-<div id="<%= dom_id interval %>">
-  <p>
-    <strong>Timesheet:</strong>
-    <%= interval.timesheet.id %>
-  </p>
-
+<div id="<%= dom_id interval %>" style="display: flex; justify-content: space-between;">
   <p>
     <strong>Date:</strong>
     <%= format_date(interval.date) %>
   </p>
 
   <p>
-    <strong>Time in:</strong>
-    <%= format_time(interval.time_in) %>
+    <strong>Time:</strong>
+    <%= format_time(interval.time_in) %> - <%= format_time(interval.time_out) %>
   </p>
 
   <p>
-    <strong>Time out:</strong>
-    <%= format_time(interval.time_out) %>
+    <strong>Duration:</strong>
+    <%= format_duration(interval.duration) %>
   </p>
 
 </div>

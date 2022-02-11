@@ -13,4 +13,8 @@ class Timesheet < ApplicationRecord
   belongs_to :pay_period
   has_many :intervals
   validates_with UniqueValidator
+
+  def total_duration
+    self.intervals.map(&:duration).inject(0, &:+)
+  end
 end

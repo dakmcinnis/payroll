@@ -1,14 +1,20 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Intervals</h1>
+<h1>Timesheet Breakdown</h1>
+<h4><%= @timesheet.pay_period.display_dates %></h4>
+
+<%= link_to "+ New interval", new_timesheet_interval_path(timesheet_id: @timesheet.id) %>
+
+<br/>
+<br/>
 
 <div id="intervals">
   <% @intervals.each do |interval| %>
     <%= render interval %>
     <p>
-      <%= link_to "Show this interval", interval %>
+      <%= link_to "Show this interval", timesheet_interval_path(timesheet_id: @timesheet.id, id: interval.id) %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New interval", new_interval_path %>
+
