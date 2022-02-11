@@ -14,4 +14,7 @@
     <%= format_duration(interval.duration) %>
   </p>
 
+  <p>
+    <%= link_to "Show this interval", timesheet_interval_path(timesheet_id: @timesheet.id, id: interval.id) %>
+  </p>
 </div>

@@ -1,5 +1,15 @@
 <div id="<%= dom_id timesheet %>">
-  <%= render "preview", timesheet: timesheet %>
+  <% pay_period = PayPeriod.find(timesheet.pay_period_id) %>
+
+  <p>
+    <strong>Employee:</strong>
+    <%= User.find(timesheet.user_id).display_full_name %>
+  </p>
+
+  <p>
+    <strong>Dates:</strong>
+    <%= pay_period.display_dates %>
+  </p>
 
   <p>
     <strong>Total Time:</strong>
