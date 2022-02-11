@@ -13,6 +13,9 @@ class PayPeriodsController < ApplicationController
   # GET /pay_periods/new
   def new
     @pay_period = PayPeriod.new
+    @pay_period.start = Time.now.to_date
+    @pay_period.end = (Time.now + 2.weeks - 1.day).to_date
+    @pay_period.call = (Time.now + 2.weeks).to_date
   end
 
   # GET /pay_periods/1/edit
