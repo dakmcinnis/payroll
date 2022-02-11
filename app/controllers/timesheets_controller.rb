@@ -1,7 +1,7 @@
 class TimesheetsController < ApplicationController
   before_action :set_timesheet, only: %i[ show edit update destroy ]
   before_action :set_timesheet_to_latest_for_user, only: %i[ show_latest ]
-  before_action :set_editable_from_timesheet, only: %i[ show edit update destroy ]
+  before_action :set_editable_from_timesheet, only: %i[ show_latest show edit update destroy ]
   before_action :set_user_from_timesheet, only: %i[ show edit update destroy ]
 
   # GET /timesheets or /timesheets.json
@@ -76,7 +76,7 @@ class TimesheetsController < ApplicationController
     end
 
     def set_timesheet_to_latest_for_user
-      @timesheet = get_latest_timesheet_for_user
+      @timesheet = self.helpers.get_latest_timesheet(user: current_user)
     end
 
     # Only allow a list of trusted parameters through.

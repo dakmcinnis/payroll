@@ -1,4 +1,4 @@
-class TimeValidator < ActiveModel::Validator
+class PayPeriodTimeValidator < ActiveModel::Validator
     def validate(record)
         return if record.start.nil? || record.end.nil? || record.call.nil?
         if record.start >= record.end
@@ -14,7 +14,7 @@ class PayPeriod < ApplicationRecord
     validates :start, presence: true
     validates :end, presence: true
     validates :call, presence: true
-    validates_with TimeValidator
+    validates_with PayPeriodTimeValidator
     after_initialize :default_values
     has_many :timesheets, dependent: :destroy
 

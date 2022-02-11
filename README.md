@@ -42,10 +42,7 @@ Run `bin/rails s`
 - Testing Improvements:
     - Fix: Inability to create fixtures with 'belongs_to' relationship ('Timesheets', 'Intervals')
     - Then, makeup for lack of testing on these models
-- Timesheet creation/updates:
-    - Auto-fill with relevant dates/times
-    - Remove unnecessary routes (less clicks)
-    - Validate that interval dates are within pay period dates
+- Timesheet creation/updates: Remove unnecessary routes (less clicks)
 - Admin: CRUD others' timesheets
 
 ## Future Additions
