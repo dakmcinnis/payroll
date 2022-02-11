@@ -1,5 +1,6 @@
 class IntervalsController < ApplicationController
   before_action :set_timesheet
+  before_action :set_editable_from_timesheet
   before_action :set_interval, only: %i[ show edit update destroy ]
 
   # GET /intervals or /intervals.json
@@ -66,6 +67,10 @@ class IntervalsController < ApplicationController
 
     def set_interval
       @interval = @timesheet.intervals.find(params[:id])
+    end
+
+    def set_editable_from_timesheet
+      @editable = @timesheet.id == TimesheetsController.helpers.get_latest_timesheet(user: current_user).id
     end
 
     # Only allow a list of trusted parameters through.

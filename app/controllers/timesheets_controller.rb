@@ -3,7 +3,6 @@ class TimesheetsController < ApplicationController
   before_action :set_timesheet_to_latest_for_user, only: %i[ show_latest ]
   before_action :set_editable_from_timesheet, only: %i[ show edit update destroy ]
   before_action :set_user_from_timesheet, only: %i[ show edit update destroy ]
-  before_action :set_editable_from_timesheet, only: %i[ show edit update destroy ]
 
   # GET /timesheets or /timesheets.json
   def index
@@ -76,10 +75,6 @@ class TimesheetsController < ApplicationController
       @timesheet = Timesheet.find(params[:id])
     end
 
-    def get_latest_timesheet_for_user
-      Timesheet.where(user: current_user).order(created_at: :desc).first
-    end
-
     def set_timesheet_to_latest_for_user
       @timesheet = get_latest_timesheet_for_user
     end
@@ -90,7 +85,7 @@ class TimesheetsController < ApplicationController
     end
 
     def set_editable_from_timesheet
-      @editable = @timesheet.id == get_latest_timesheet_for_user.id
+      @editable = @timesheet.id == self.helpers.get_latest_timesheet(user: current_user).id
     end
 
     def set_user_from_timesheet

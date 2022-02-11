@@ -9,6 +9,9 @@
 
 <%= render @interval %>
 
-<%= link_to "Edit this interval", edit_timesheet_interval_path(timesheet: @timesheet) %>
-
-<%= button_to 'Destroy interval', [@timesheet, @interval], method: :delete %>
+<% if @editable %>
+    <%= link_to "Edit this interval", edit_timesheet_interval_path(timesheet: @timesheet) %>
+    <%= button_to 'Destroy interval', [@timesheet, @interval], method: :delete %>
+<% else %>
+    <strong style="color: red;">Closed for edits</strong>
+<% end %>

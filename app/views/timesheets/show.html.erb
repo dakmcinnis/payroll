@@ -8,5 +8,15 @@
 <%= render @timesheet %>
 
 <div>
+  <% if @editable %>
+    <strong style="color: green;">Open for edits</strong>
+  <% else %>
+    <strong style="color: red;">Closed for edits</strong>
+  <% end %>
+</div>
+
+<br/>
+
+<div>
   <%= link_to "Show hours breakdown", timesheet_intervals_path(timesheet_id: @timesheet.id)%>
 </div>
